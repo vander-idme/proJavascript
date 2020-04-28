@@ -1,0 +1,17 @@
+{
+  "name": "profesional",
+  "version": "1.0.0",
+  "description": "Proyecto del curso Profesional de JS",
+  "license": "MIT",
+  "author": "Vander Idme",
+  "keywords": [
+    "platzi",
+    "javascript"
+  ],
+  "scripts": {
+    "start": "live-server"
+  },
+  "devDependencies": {
+    "live-server": "1.2.1"
+  }
+}
