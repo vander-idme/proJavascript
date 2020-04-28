@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prototype</title>
+</head>
+<body>
+  <a href="./index.html">Go back</a>
+  <h2>Prototype</h2>
+  <p>Abre la consola -></p>
+
+  <script>
+    // Repasito... podemos agregar keys a un objeto
+    // const vander = {
+    //   name: 'Vander',
+    // }
+    // vander.apellido = 'Catti Idme'
+
+    // console.log(vander)
+    // ->>> output: {name: "Vander", apellido: "Catti Idme"}
+
+    // Objetos identicos
+
+    // const zelda = {
+    //   name: 'Zelda'
+    // }
+    // zelda.saludar = function() {
+    //   console.log(`Hola! soy ${this.name}`)
+    // }
+    // zelda.saludar()
+
+    // const link = {
+    //   name: 'Link'
+    // }
+    // link.saludar = function() {
+    //   console.log(`Hola! soy ${this.name}`)
+    // }
+    // link.saludar()
+
+    // Y si creamos una funcion que nos cree objetos??
+
+    // function Hero(name) {
+    //   const hero = {
+    //     name: name
+    //   }
+    //   hero.saludar = function(){
+    //     console.log(`Hola me llamo ${this.name}`)
+    //   }
+    //   return hero
+    // }
+
+    // const zelda = Hero('Zelda')
+    // zelda.saludar()
+
+    // const link = Hero('Link')
+    // link.saludar()
+
+    // Optimizemos el codigo sacando la funcion saludar
+    // creandola una sola vez y llamandola cuando la necesitemos
+
+    // const heroMethods = {
+    //   saludar: function() {
+    //     console.log(`Hola wachin yo soy ${this.name}`)
+    //   }
+    // }
+
+    // function Hero(name) {
+    //   const hero = {
+    //     name: name
+    //   }
+    //   hero.saludar = heroMethods.saludar
+
+    //   return hero
+    // }
+
+    // const vander = Hero('Vander')
+    // vander.saludar()
+
+    // const zelda = Hero('Zelda')
+    // zelda.saludar()
+
+    // const link = Hero('Link')
+    // link.saludar()
+
+    // OBJECT.CREATE
+
+    // const heroMethods = {
+    //   saludar: function() {
+    //     console.log(`Hola wachin yo soy ${this.name}`)
+    //   }
+    // }
+
+    // function Hero(name) {
+    //   const hero = Object.create(heroMethods)
+    //   hero.name = name
+    //   return hero
+    // }
+
+    // const vander = Hero('Vander')
+    // vander.saludar()
+
+    // Analizando una Clase 'class'
+
+    // const heroMethods = {
+    //   saludar: function() {
+    //     console.log(`Hola wachin yo soy ${this.name}`)
+    //   }
+    // }
+
+    function Hero(name) {
+      //const hero = Object.create(Hero.prototype)
+      // this = Object.create(Hero.prototype)
+
+      // hero.name = name
+      this.name = name
+
+      // return this
+    }
+
+    Hero.prototype.saludar = function() {
+      console.log(`Hola wachin yo soy ${this.name}`)
+    }
+
+    // const vander = Hero('Vander')
+    const vander = new Hero('Vander')
+    vander.saludar()
+
+  </script>
+</body>
+</html>

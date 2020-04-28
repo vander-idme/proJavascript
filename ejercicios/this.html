@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>This</title>
+</head>
+<body>
+  <a href="./index.html">Go back</a>
+  <h2>This</h2>
+  <p>
+    <code>this</code> se refiere a un objeto. Ese objeto es el
+    que actualmente esta ejecutando un pedazo de código
+  </p>
+  <p>Abre la consola -></p>
+
+  <script>
+    //console.log("this is this buddy")
+
+    // this en el global scope
+    console.log(`this is: ${this}`)
+
+    // this en el scope de una funcion
+    function whoIsThis() {
+      return this
+    }
+
+    console.log(`whoIsThis(): ${whoIsThis()}`)
+
+    // this en el scope de una funcion en 'strict mode'
+    function whoIsThisStrict() {
+      'use strict'
+      return this
+    }
+
+    console.log(`whoIsThisStrict(): ${whoIsThisStrict()}`)
+
+    // this en el contexto de un objeto
+    const person = {
+      name: "Vander",
+      saludar: function() {
+        console.log(`Hola soy ${this.name}`)
+      },
+      whoIsThis: function() {
+        return this
+      }
+    }
+    person.saludar()
+    console.log(person.whoIsThis())
+
+    // this cuando sacamos la funcion de un objeto
+    const accion = person.saludar
+    accion()
+
+    // this en el contexto de una clase
+    // recodatorio: una clase en js es un objeto que instancia objetos
+
+    function Person(name) {
+      this.name = name
+    }
+
+    Person.prototype.saludar = function() {
+      console.log(`Me llamo ${this.name}`)
+    }
+    Person.prototype.isThis = function() {
+      return this
+    }
+
+    const vander = new Person('Vander')
+    vander.saludar()
+    console.log(vander.isThis())
+  </script>
+</body>
+</html>

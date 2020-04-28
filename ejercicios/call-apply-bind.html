@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Call-Apply-Bind</title>
+</head>
+<body>
+  <a href="./index.html">Go back</a>
+  <h2>Call-Apply-Bind</h2>
+  <p>Abre la consola -></p>
+
+  <ul>
+    <li><button class="call-to-action">Aprender</button></li>
+    <li><button class="call-to-action">Aprender más</button></li>
+    <li><button class="call-to-action">¡Nunca parar de aprender!!</button></li>
+  </ul>
+
+  <script>
+    // Establece 'this' usando 'call'
+    function saludar(){
+      console.log(`Hola. Soy ${this.name} ${this.apellido}`)
+    }
+
+    const vander = {
+      name: 'Vander',
+      apellido: "Catti Idme"
+    }
+
+    saludar.call(vander)
+
+    // y si la funcion recibe parametros?? 
+    //podemos establecer el this a pesar de eso
+
+    function caminar(metros, direccion) {
+      console.log(`${this.name} camina ${metros} metros hacia el ${direccion}`)
+    }
+
+    caminar.call(vander, 400, 'sur')
+
+    // Establece this usando apply
+    const valores = [800, "sureste"]
+    caminar.apply(vander, [800, "sureste"])
+    // caminar.apply(vander, valores)
+
+    /*
+    Call -> comma pasar argumentos separados por comas
+    Apply -> array pasar argumentos en un arreglo
+    */
+
+    // Establecer this en una NUEVA funcion usando bind
+    const zhaida = {
+      name: "Zhaida",
+      apellido: "Cazasola"
+    }
+
+    const zhaidaSaluda = saludar.bind(zhaida)
+    zhaidaSaluda()
+
+    const zhaidaCamina = caminar.bind(zhaida)
+    zhaidaCamina(400, "sur")
+    /*
+      Podemos parsear los argumentos
+      ej
+      const zhaidaCamina = caminar.bind(zhaida, 700)
+      zhaidaCamina("sur")
+
+      podemos tener 'bindeados' solo algunos de los argumentos
+      que nos interesen como los metros que se camina y solamente
+      queremos cambiar la direccion en la que se va ir
+    */
+
+    // cuando es util usar uno de estos metodos?
+    const buttons = document.getElementsByClassName("call-to-action")
+    console.log(buttons)
+
+    const btns = [...buttons] //spread operator nos permite expandir objetos iterables
+    btns.forEach(button => {
+      button.onclick = () => alert('Nunca pares de aprender')
+    });
+
+    //cuando llamamos por getElementByClassName, llamamos algo parecido a un arreglo
+    //llamamos a un NODE LIST
+
+    // Array.prototype.forEach.call(buttons, button =>{
+    //   button.onclick = () => alert("Nunca pares de aprender")
+    // })
+    // for(button of buttons){
+    //   button.onclick = () => alert("Nunca pares de aprender")
+    // }
+  </script>
+</body>
+</html>

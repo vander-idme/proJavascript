@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Scope</title>
+</head>
+<body>
+   <a href="./index.html">Go back</a>
+   <h2>Scope</h2>
+   <p>Abre la consola -></p>
+
+
+   <script src="https://unpkg.com/jquery@3.3.1/dist/jquery.js"></script>
+   <script>
+      // Global Scope
+      // var message = "Hello Platzi"
+      // var $ = function(message){
+      //    console.log("Say: " + message)
+      // }
+
+      // Function scope
+
+      // function printNumbers(){
+      //    for(var i=0; i < 10; i++){
+      //       function eventually(n){
+      //          setTimeout(()=>{
+      //             console.log(n)
+      //          },300)
+      //       }
+      //       eventually(i)
+      //    }
+      // }
+
+      // printNumbers()
+
+      // Block scope
+
+      function printNumbers(){
+         for(let i=0; i < 10; i++){
+            setTimeout(()=>{
+               console.log(i)
+            },100)
+         }
+      }
+
+      printNumbers()
+
+   </script>
+</body>
+</html>

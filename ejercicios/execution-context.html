@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Execution-context</title>
+</head>
+<body>
+   <a href="./index.html">Go back</a>
+   <h2>Execution-context</h2>
+   <p>Abre la consola -></p>
+
+   <script>
+      var a = 10
+      function functionA(){
+         console.log("Start function A")
+         function functionB(){
+            console.log("In function B")
+         }
+         functionB()
+      }
+      functionA()
+      console.log("Global context")
+   </script>
+</body>
+</html>
