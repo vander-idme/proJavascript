@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Getters-Setters</title>
+</head>
+<body>
+  <a href="./index.html">Go back</a>
+  <h2>Getters - Setters</h2>
+  <p>Abre la consola -></p>
+
+  <script>
+    /*Getters se utilizan para generar una propiedad
+      virtual retornando un valor a traves de una
+      funcion
+      Setters permiten mutar o iterar las propiedades
+      virtuales modificando propiedades dentro de una
+      funcion
+    */
+    const person = {
+      name: 'Vander',
+      lastName: 'Idme',
+      get fullName() {
+        return `Full name: ${this.name} ${this.lastName}`
+      },
+      set fullName(value) {
+        const names = value.split(' ')
+        this.name = names[0]
+        this.lastName = names[1]
+      }
+    }
+  </script>
+</body>
+</html>
