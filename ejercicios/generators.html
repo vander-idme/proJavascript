@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Generators</title>
+</head>
+<body>
+  <a href="./index.html">Go back</a>
+  <h2>Generators</h2>
+  <p>Abre la consola -></p>
+
+  <script>
+    console.log("Todo okey okey")
+
+    /*
+      Los generadores son funciones de las que se puede salir y volver a entrar.
+      Su contexto (asociacion de variables) sera conservado entre las reentradas
+      Cada vez que llamamos next, la ejecucion del generador va a continuar hasta
+      el proximo yield
+    */
+
+    function* simpleGenerator() {
+      console.log("GENERATOR START")
+      yield 1
+      yield 2
+      yield 3
+      console.log("GENERATOR END")
+    }
+
+    /*
+      The yield keyword pauses generator function execution and the value
+      of the expression following the yield keyword is returned
+      to the generator's caller.
+    */
+
+    // generadores infinitos
+
+    function* idMaker() {
+      let id = 1
+      while(true){
+        yield id
+        id = id + 1
+      }
+    }
+
+    // Cuando llamamos next tambien podemos pasar valores que la funcion recibe
+
+    function* idMakerWithReset() {
+      let id = 1
+      let reset
+      while(true) {
+        reset = yield id
+        if(reset) {
+          id = 1
+        } else {
+          id = id + 1
+        }
+      }
+    }
+
+    // ejemplo de fibonasi
+
+    function* fibo() {
+      let s1 = 0
+      let s2 = 1
+      let nextNumber = 1
+
+      while(true) {
+        yield nextNumber
+        nextNumber = s1 + s2
+        s1 = s2
+        s2 = nextNumber
+      }
+    }
+
+  </script>
+</body>
+</html>
