@@ -15,6 +15,7 @@
 function AutoPause() {
   this.threshold = 0.25
   this.handlerIntersection = this.handlerIntersection.bind(this)
+  this.handlerVisibilityChange = this.handlerVisibilityChange.bind(this)
 }
 
 AutoPause.prototype.run = function(player) {
@@ -25,6 +26,7 @@ AutoPause.prototype.run = function(player) {
   })
 
   observer.observe(this.player.media)
+  document.addEventListener('visibilitychange', this.handlerVisibilityChange)
 }
 
 AutoPause.prototype.handlerIntersection = function(entries) {
@@ -32,6 +34,16 @@ AutoPause.prototype.handlerIntersection = function(entries) {
   console.log(entry)
 
   const isVisible = entry.intersectionRatio >= this.threshold
+
+  if(isVisible) {
+    this.player.play()
+  } else {
+    this.player.pause()
+  }
+}
+
+AutoPause.prototype.handlerVisibilityChange = function() {
+  const isVisible = document.visibilityState === "visible"
 
   if(isVisible) {
     this.player.play()
