@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Abort-fetch</title>
+</head>
+<body>
+  <a href="./index.html">Go back</a>
+  <h2>Abort-fetch</h2>
+  <p>Abre la consola -></p>
+
+  <img
+    id="image"
+    height="400px"
+  /><br>
+  <button id="load">Load Image</button>
+  <button id="stop" disabled>Stop Fetching</button>
+
+  <script>
+    const url = 'https://images.pexels.com/photos/974470/nature-stars-milky-way-galaxy-974470.jpeg?q=100'
+
+    const img = document.getElementById('image')
+    const loadBtn = document.getElementById('load')
+    const stopBtn = document.getElementById('stop')
+    let controller
+
+    function startLoading() {
+      loadBtn.disabled = true
+      loadBtn.innerText = 'Loading ... '
+      stopBtn.disabled = false
+    }
+
+    function stopLoading() {
+      loadBtn.disabled = false
+      loadBtn.innerText = "Load Image"
+      stopBtn.disabled = true
+    }
+
+    loadBtn.onclick = async function() {
+
+      startLoading()
+
+      controller = new AbortController()
+
+      try {
+        const response =  await fetch(url, { signal: controller.signal })
+        const blob = await response.blob()
+        const imgUrl = URL.createObjectURL(blob)
+        img.src = imgUrl
+      } catch(error) {
+        console.log(error.message)
+      }
+
+      stopLoading()
+    }
+
+    stopBtn.onclick = async function() {
+      controller.abort()
+      stopLoading()
+    }
+
+
+  </script>
+</body>
+</html>
