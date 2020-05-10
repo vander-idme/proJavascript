@@ -208,27 +208,66 @@ class firstClass {
 // un propiedad de una clase a de tipo de una clase b
 // Ejemplo!!!!!!
 
-class secondClass {
-  private propertyOne: firstClass
-  propertyTwo: string
+// class secondClass {
+//   private propertyOne: firstClass
+//   propertyTwo: string
 
-  // para inicializar es necesario 
-  constructor(s: string, c: firstClass) {
-    this.propertyTwo = s
-    this.propertyOne = c
+//   // para inicializar es necesario 
+//   constructor(s: string, c: firstClass) {
+//     this.propertyTwo = s
+//     this.propertyOne = c
+//   }
+
+//   hablar(): string {
+//     return `I have a property of firstClass -> ${this.propertyOne.propertyOne}
+//     and ... my own property -> ${this.propertyTwo}
+//     `
+//   }
+
+// }
+
+// // creacion de una instancia
+// let instanceOne = new firstClass("First Property")
+// let instanceTwo = new secondClass("Second Property",instanceOne)
+
+// console.log(instanceOne.speking())
+// console.log(instanceTwo.hablar())
+
+// EJEMPLO DE LA LINEA CON COORDENADAS
+
+class coord {
+  coordX: number
+  coordY: number
+
+  constructor(x: number, y: number) {
+    this.coordX = x
+    this.coordY = y
   }
-
-  hablar(): string {
-    return `I have a property of firstClass -> ${this.propertyOne.propertyOne}
-    and ... my own property -> ${this.propertyTwo}
-    `
-  }
-
 }
 
-// creacion de una instancia
-let instanceOne = new firstClass("First Property")
-let instanceTwo = new secondClass("Second Property",instanceOne)
+class line {
+  private pointA: coord
+  private pointB: coord
 
-console.log(instanceOne.speking())
-console.log(instanceTwo.hablar())
+  constructor(a: coord, b: coord) {
+    this.pointA = a
+    this.pointB = b
+  }
+
+  getCoords() {
+    return `Estas son mis coordenadas:
+    A: (${this.pointA.coordX}, ${this.pointA.coordY})
+    B: (${this.pointB.coordX}, ${this.pointB.coordY})`
+  }
+}
+
+let a = new coord(1,2)
+let b = new coord(3,5)
+
+let myLine = new line(a, b)
+
+console.log(myLine.getCoords())
+
+/* Estas son mis coordenadas:
+    A: (1, 2)
+    B: (3, 5) */
