@@ -138,46 +138,97 @@
 // console.log(agente)
 
 // INTERFACES
-enum Color {
-  rojo = "Rojo",
-  azul = "Azul"
+// enum Color {
+//   rojo = "Rojo",
+//   azul = "Azul"
+// }
+
+
+// interface Rectangulo {
+//   ancho: number,
+//   alto: number
+//   color?: Color //propiedad que puede ser obviada
+// }
+
+// const rect: Rectangulo = {
+//   ancho: 12,
+//   alto: 4,
+//   color: Color.azul
+// }
+
+// function calcularArea(r: Rectangulo): number {
+//   return r.alto * r.ancho
+// }
+
+// const areaRect = calcularArea(rect)
+// console.log(areaRect)
+
+// rect.toString = function() {
+//   return this.color?`Un rectangulo color ${this.color}`: `Un rectangulo`
+// }
+
+// console.log(rect)
+// console.log(rect.toString())
+
+// interface Cuadrado {
+//   lado: number
+// }
+
+// const cuadro: Cuadrado = {
+//   lado: 12
+// }
+
+// console.log(`Este es mi cuadrado: ${cuadro.lado}`)
+
+// console.log(`Este es mi cuadrado: ${cuadro.lado}`)
+
+
+// CLASES
+
+// declarar una clase en typescript
+
+class firstClass {
+  // propiedades
+  // private propertyOne: string  // -> al declarar una variable privada solo se puede acceder a esa variable en la propia clase
+  propertyOne: string
+
+  // constructor
+
+  constructor(s: string) {
+    this.propertyOne = s
+  }
+
+  // metodos
+  speking(): string {
+    return `Esta es una de mis propiedades -> ${this.propertyOne}`
+  }
+
 }
 
+// un propiedad de una clase a de tipo de una clase b
+// Ejemplo!!!!!!
 
-interface Rectangulo {
-  ancho: number,
-  alto: number
-  color?: Color //propiedad que puede ser obviada
+class secondClass {
+  private propertyOne: firstClass
+  propertyTwo: string
+
+  // para inicializar es necesario 
+  constructor(s: string, c: firstClass) {
+    this.propertyTwo = s
+    this.propertyOne = c
+  }
+
+  hablar(): string {
+    return `I have a property of firstClass -> ${this.propertyOne.propertyOne}
+    and ... my own property -> ${this.propertyTwo}
+    `
+  }
+
 }
 
-const rect: Rectangulo = {
-  ancho: 12,
-  alto: 4,
-  color: Color.azul
-}
+// creacion de una instancia
+let instanceOne = new firstClass("First Property")
+let instanceTwo = new secondClass("Second Property",instanceOne)
 
-function calcularArea(r: Rectangulo): number {
-  return r.alto * r.ancho
-}
-
-const areaRect = calcularArea(rect)
-console.log(areaRect)
-
-rect.toString = function() {
-  return this.color?`Un rectangulo color ${this.color}`: `Un rectangulo`
-}
-
-console.log(rect)
-console.log(rect.toString())
-
-interface Cuadrado {
-  lado: number
-}
-
-const cuadro: Cuadrado = {
-  lado: 12
-}
-
-console.log(`Este es mi cuadrado: ${cuadro.lado}`)
-
-console.log(`Este es mi cuadrado: ${cuadro.lado}`)
+console.log(instanceOne.speking())
+console.log(instanceTwo.hablar())
